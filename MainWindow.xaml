@@ -1,0 +1,134 @@
+<Window x:Class="TicTacToe.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TicTacToe"
+        mc:Ignorable="d"
+        Title="TicTacToe" Height="800" Width="800" MinHeight="500" MinWidth="500" Background="Gray">
+    <Window.Resources>
+        <Style TargetType="Grid" x:Key="ContentContainer">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Width" Value="450"/>
+            <Setter Property="Height" Value="550"/>
+        </Style>
+        <Style TargetType="TextBlock" x:Key="GameAnnouncer">
+            <Setter Property="Foreground" Value="#D9D9D9"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontStretch" Value="Normal"/>
+        </Style>
+        <Style TargetType="Button" x:Key="GameReset">
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Background" Value="#284B63"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="50"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <Style TargetType="Grid" x:Key="GameContainer">
+            <Setter Property="Background" Value="Gray"/>
+            <Setter Property="Width" Value="450"/>
+            <Setter Property="Height" Value="450"/>
+        </Style>
+        <Style TargetType="Button" x:Key="BaseButton">
+            <Setter Property="Background" Value="#353535"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="120"/>
+            <Setter Property="Margin" Value="15"/>
+            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="Foreground" Value="Aqua"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#353535"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+    <Grid Style="{StaticResource ContentContainer}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="450"/>
+        </Grid.RowDefinitions>
+        <Grid Width="450" Height="100">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Column="0" Name="gameAnnouncements" Style="{StaticResource GameAnnouncer}" Grid.Row="0" Foreground="White">You can start Player  (X)</TextBlock>
+            <Grid Width="400" Grid.Column="0" Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <ComboBox SelectionChanged="DifficultyChanged" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Width="200" Height="40">
+                    <ComboBoxItem Name="defaultComboBoxElement" Content="Select a difficulity or keep this"/>
+                    <ComboBoxItem Content="Easy"/>
+                    <ComboBoxItem Content="Medium"/>
+                    <ComboBoxItem Content="Hard"/>
+                    <ComboBoxItem Content="God"/>
+                    <ComboBoxItem Content="Unmatched"/>
+                </ComboBox>
+                <Button Click="Reset" Grid.Column="1" Style="{StaticResource GameReset}">Reset</Button>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1" Style="{StaticResource GameContainer}"  ShowGridLines="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="150"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="150"/>
+                <RowDefinition Height="150"/>
+            </Grid.RowDefinitions>
+            <Button Name="button0" Grid.Row="0" Grid.Column="0" Click="ButtonClicked" Style="{StaticResource BaseButton}">
+                <TextBlock Name="text0"></TextBlock>
+            </Button>
+            <Button Name="button1" Grid.Row="0" Grid.Column="1" Click="ButtonClicked" Style="{StaticResource BaseButton}">
+                <TextBlock Name="text1"></TextBlock>
+            </Button>
+            <Button Name="button2" Grid.Row="0" Grid.Column="2" Click="ButtonClicked" Style="{StaticResource BaseButton}">
+                <TextBlock Name="text2"></TextBlock>
+            </Button>
+            <Button Name="button3" Grid.Row="1" Grid.Column="0" Click="ButtonClicked" Style="{StaticResource BaseButton}">
+                <TextBlock Name="text3"></TextBlock>
+            </Button>
+            <Button Name="button4" Grid.Row="1" Grid.Column="1" Click="ButtonClicked" Style="{StaticResource BaseButton}">
+                <TextBlock Name="text4"></TextBlock>
+            </Button>
+            <Button Name="button5" Grid.Row="1" Grid.Column="2" Click="ButtonClicked" Style="{StaticResource BaseButton}">
+                <TextBlock Name="text5"></TextBlock>
+            </Button>
+            <Button Name="button6" Grid.Row="2" Grid.Column="0" Click="ButtonClicked" Style="{StaticResource BaseButton}">
+                <TextBlock Name="text6"></TextBlock>
+            </Button>
+            <Button Name="button7" Grid.Row="2" Grid.Column="1" Click="ButtonClicked" Style="{StaticResource BaseButton}">
+                <TextBlock Name="text7"></TextBlock>
+            </Button>
+            <Button Name="button8" Grid.Row="2" Grid.Column="2" Click="ButtonClicked" Style="{StaticResource BaseButton}">
+                <TextBlock Name="text8"></TextBlock>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>
